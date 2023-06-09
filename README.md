@@ -2,15 +2,14 @@
 
 A new Flutter project.
 
-## Getting Started
+## Iniciando backend
+Abrir pasta do backend no terminal e executar comando dart para startar o servidor
+```
+cuidapet_api git:(main) dart bin/server.dart
+Server iniciado na porta 8080
+Para acessar usar um dos endereços abaixo: 
+http://0.0.0.0:8080
+http://localhost:8080
+http://<seu-ip>:8080
+```
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
