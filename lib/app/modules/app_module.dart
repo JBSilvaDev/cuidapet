@@ -1,6 +1,6 @@
+import 'package:app_cuida_pet/app/modules/auth/auth_module.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-import 'home.dart';
 
 class AppModule extends Module {
   @override
@@ -8,6 +8,6 @@ class AppModule extends Module {
 
   @override
   List<ModularRoute> get routes => [
-        ChildRoute('/', child: (_, __) => const Home()),
+        ModuleRoute('/auth', module:  AuthModule()),
       ];
 }

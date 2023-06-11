@@ -15,9 +15,10 @@ dependencies:
   flutter_modular: ^5.0.3
   mobx: ^2.2.0
   flutter_mobx: ^2.0.6+5
-  asuka: ^2.1.2
+  asuka: ^2.1.0
   dio: ^5.2.0+1
   flutter_screenutil: ^5.8.4
+
 
 dev_dependencies:
   flutter_test:
@@ -29,3 +30,5 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/images/
