@@ -8,6 +8,6 @@ class LoginModule extends Module {
   @override
   List<ModularRoute> get routes => [
         ChildRoute(Modular.initialRoute,
-            child: (context, args) => const LoginPage())
+            child: (context, args) => LoginPage())
       ];
 }
