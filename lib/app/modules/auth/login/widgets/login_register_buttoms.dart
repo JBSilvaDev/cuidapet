@@ -1,7 +1,7 @@
 part of '../login_page.dart';
 
 class _LoginRegisterButtoms extends StatelessWidget {
-  const _LoginRegisterButtoms({super.key});
+  const _LoginRegisterButtoms();
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,10 @@ class _LoginRegisterButtoms extends StatelessWidget {
             icon: CuidapetIcons.google,
             label: 'Google'),
         RoundedButtomIcon(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushNamed(context, '/auth/register');
+
+            },
             width: .42.sw,
             color: Colors.grey,
             icon: Icons.mail,

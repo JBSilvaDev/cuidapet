@@ -1,5 +1,6 @@
 import 'package:app_cuida_pet/app/modules/auth/home/auth_home_page.dart';
 import 'package:app_cuida_pet/app/modules/auth/login/login_module.dart';
+import 'package:app_cuida_pet/app/modules/auth/register/register_module.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 class AuthModule extends Module {
@@ -10,6 +11,7 @@ class AuthModule extends Module {
   List<ModularRoute> get routes => [
         ChildRoute(Modular.initialRoute,
             child: (context, args) =>  AuthHomePage(authStore: Modular.get(),)),
-            ModuleRoute('/login', module: LoginModule())
+            ModuleRoute('/login', module: LoginModule()),
+            ModuleRoute('/register', module: RegisterModule()),
       ];
 }
