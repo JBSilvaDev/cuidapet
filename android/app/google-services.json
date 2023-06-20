@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "483132674321-e8e08djja7mobo2vmoc26boiqbl0odtf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.jbsilva.dev.app_cuida_pet",
+            "certificate_hash": "62deb89f663c4bd93318d48918ca736131cd5fda"
+          }
+        },
+        {
           "client_id": "483132674321-c92qutcc6t4jbvt1mecm89hgitsvdsjd.apps.googleusercontent.com",
           "client_type": 3
         }
