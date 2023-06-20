@@ -22,7 +22,6 @@ class LoginPage extends StatelessWidget {
         padding: const EdgeInsets.all(15),
         child: Column(
           children: [
-
             SizedBox(
               height: 50.h,
             ),
