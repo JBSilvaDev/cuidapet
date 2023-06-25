@@ -12,13 +12,17 @@ class _LoginRegisterButtoms extends StatelessWidget {
       runSpacing: 10,
       children: [
         RoundedButtomIcon(
-            onPressed: () {},
+            onPressed: () {
+              Messages.info('info');
+            },
             width: .42.sw,
             color: Colors.blue,
             icon: CuidapetIcons.facebook,
             label: 'Facebook'),
         RoundedButtomIcon(
-            onPressed: () {},
+            onPressed: () {
+              Messages.alert('alerta');
+            },
             width: .42.sw,
             color: Colors.red[300],
             icon: CuidapetIcons.google,
@@ -26,7 +30,6 @@ class _LoginRegisterButtoms extends StatelessWidget {
         RoundedButtomIcon(
             onPressed: () {
               Navigator.pushNamed(context, '/auth/register');
-
             },
             width: .42.sw,
             color: Colors.grey,

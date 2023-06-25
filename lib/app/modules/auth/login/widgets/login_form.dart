@@ -28,11 +28,10 @@ class _LoginFormState extends State<_LoginForm> {
             label: 'Entrar',
             onPressed: () {
               Loader.show();
-              Future.delayed(Duration(seconds: 2),(){
+              
+              Future.delayed(Duration(seconds: 2), () {
                 Loader.hide();
-                
               });
-
             },
           )
         ],
