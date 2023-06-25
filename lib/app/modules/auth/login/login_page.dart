@@ -1,10 +1,6 @@
-import 'package:app_cuida_pet/app/core/helpers/enviroments.dart';
-import 'package:app_cuida_pet/app/core/logger/app_logger.dart';
 import 'package:app_cuida_pet/app/core/ui/extensions/size_screen_extension.dart';
 import 'package:app_cuida_pet/app/core/ui/extensions/theme_extensions.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_modular/flutter_modular.dart';
-
 import '../../../core/ui/cuidapet_buttom_default.dart';
 import '../../../core/ui/icons/cuidapet_icons.dart';
 import '../../../core/ui/rounded_buttom_icon.dart';
@@ -18,7 +14,6 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
     return Scaffold(
         body: SingleChildScrollView(
       child: Padding(

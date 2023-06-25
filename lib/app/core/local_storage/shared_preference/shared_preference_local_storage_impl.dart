@@ -1,4 +1,4 @@
-import './local_storage.dart';
+import '../local_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SharedPreferenceLocalStorageImpl implements LocalStorage {
@@ -40,7 +40,7 @@ class SharedPreferenceLocalStorageImpl implements LocalStorage {
         await sharedPreferences.setBool(key, value as bool);
       case double:
         await sharedPreferences.setDouble(key, value as double);
-      case const (List<String>):
+      case List:
         await sharedPreferences.setStringList(key, value as List<String>);
       default:
         throw Exception('Tipo nao suportado');
