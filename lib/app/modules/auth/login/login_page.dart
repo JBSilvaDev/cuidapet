@@ -5,6 +5,7 @@ import '../../../core/ui/cuidapet_buttom_default.dart';
 import '../../../core/ui/icons/cuidapet_icons.dart';
 import '../../../core/ui/rounded_buttom_icon.dart';
 import '../../../core/ui/widgets/cuidapet_txtform.dart';
+import '../../../core/ui/widgets/loader.dart';
 
 part './widgets/login_form.dart';
 part './widgets/login_register_buttoms.dart';

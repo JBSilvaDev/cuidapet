@@ -15,15 +15,26 @@ class _LoginFormState extends State<_LoginForm> {
         children: [
           CuidapetTxtform(labelText: 'Login'),
           const SizedBox(
-             height: 20,
+            height: 20,
           ),
-          CuidapetTxtform(labelText: 'Senha', obscureText: true,),
+          CuidapetTxtform(
+            labelText: 'Senha',
+            obscureText: true,
+          ),
           const SizedBox(
-             height: 20,
+            height: 20,
           ),
-          CuidapetButtomDefault(label: 'Entrar', onPressed: () {
-            
-          },)
+          CuidapetButtomDefault(
+            label: 'Entrar',
+            onPressed: () {
+              Loader.show();
+              Future.delayed(Duration(seconds: 2),(){
+                Loader.hide();
+                
+              });
+
+            },
+          )
         ],
       ),
     );
