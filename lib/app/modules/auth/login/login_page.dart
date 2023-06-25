@@ -18,14 +18,7 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var log = Modular.get<AppLogger>();
-    log.append('Error x');
-    log.append('Error y');
-    log.append('Error z');
-    log.append('Error A');
-    log.closeAppend();
     
-
     return Scaffold(
         body: SingleChildScrollView(
       child: Padding(
