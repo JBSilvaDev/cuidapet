@@ -5,7 +5,7 @@ import 'package:app_cuida_pet/app/core/ui/extensions/theme_extensions.dart';
 
 class CuidapetTxtform extends StatelessWidget {
   final TextEditingController? controllerEC;
-  final FormFieldValidator? validator;
+  final FormFieldValidator<String>? validator;
   final String labelText;
   final bool obscureText;
   final ValueNotifier<bool> _obscureTextVN;
