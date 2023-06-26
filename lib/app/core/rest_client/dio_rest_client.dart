@@ -12,11 +12,12 @@ class DioRestClient implements RestClient {
   final _defaultOptions = BaseOptions(
       baseUrl: Enviroments.param(Constantes.ENV_BASE_URL_KEY) ?? '',
       connectTimeout: Duration(
-          microseconds: int.parse(
+        
+          milliseconds: int.parse(
               Enviroments.param(Constantes.ENV_REST_CLIENT_CONNECT_TIMEOUT) ??
                   '0')),
       receiveTimeout: Duration(
-          microseconds: int.parse(
+          milliseconds: int.parse(
               Enviroments.param(Constantes.ENV_REST_CLIENT_RECEIVE_TIMEOUT) ??
                   '0')));
 
@@ -24,6 +25,7 @@ class DioRestClient implements RestClient {
     BaseOptions? baseOptions,
   }) {
     _dio = Dio(baseOptions ?? _defaultOptions);
+    _dio.interceptors.add(LogInterceptor(requestBody: true, responseBody: true));
   }
 
   @override

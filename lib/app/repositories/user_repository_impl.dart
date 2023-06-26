@@ -30,10 +30,10 @@ class UserRepositoryImpl implements UserRepository {
               .contains('Usuario ja cadastrado')) {
         _log.error(e.error, e, s);
         throw UserExistsException();
-      } else if (e.statusCode == 400) {
-        _log.error('Erro ao cadastrar usuario', e, s);
-        throw Failure(message: 'Erro ao registrar usuario');
       }
+      _log.error('Erro ao cadastrar usuario', e, s);
+      throw Failure(message: 'Erro ao registrar usuario');
     }
+
   }
 }
