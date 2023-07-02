@@ -2,6 +2,8 @@
 import 'package:app_cuida_pet/app/core/exceptions/failure.dart';
 import 'package:app_cuida_pet/app/core/exceptions/user_exists_exception.dart';
 import 'package:app_cuida_pet/app/core/exceptions/user_not_exists_exception.dart';
+import 'package:app_cuida_pet/app/core/helpers/constantes.dart';
+import 'package:app_cuida_pet/app/core/local_storage/local_storage.dart';
 import 'package:app_cuida_pet/app/core/logger/app_logger.dart';
 import 'package:app_cuida_pet/app/repositories/user_repository.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -11,10 +13,13 @@ import 'user_service.dart';
 class UserServiceImpl implements UserService {
   final AppLogger _log;
   final UserRepository _repository;
+  final LocalStorage _localStorage;
   UserServiceImpl({
     required AppLogger log,
     required UserRepository repository,
+    required LocalStorage localStorage,
   })  : _log = log,
+        _localStorage = localStorage,
         _repository = repository;
 
   @override
@@ -56,7 +61,11 @@ class UserServiceImpl implements UserService {
 
           throw Failure(message: 'E-mail ainda não verificado!');
         }
-        print('E-mail verificado');
+        final accessToken = await _repository.login(email, password);
+        await _saveAccessToken(accessToken);
+        final xx = await _localStorage.read<String>(Constantes.LOCAL_STORAGE_ACCESS_TOKEN_KEY);
+          print(xx);
+
       } else {
         throw Failure(message: 'Login nao pode ser feito por e-mail e senha');
       }
@@ -65,7 +74,9 @@ class UserServiceImpl implements UserService {
     } on FirebaseAuthException catch (e, s) {
       _log.error('Usuario ou senha invalidos no firebase [${e.code}]', e, s);
       throw Failure(message: 'Usuario ou senha invalidos');
-
     }
   }
+
+  Future<void> _saveAccessToken(String accessToken) =>
+      _localStorage.write(Constantes.LOCAL_STORAGE_ACCESS_TOKEN_KEY, accessToken);
 }
