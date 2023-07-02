@@ -1,9 +1,13 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:app_cuida_pet/app/core/exceptions/user_not_exists_exception.dart';
 import 'package:app_cuida_pet/app/core/ui/widgets/loader.dart';
+import 'package:app_cuida_pet/app/core/ui/widgets/messages.dart';
 import 'package:mobx/mobx.dart';
 
 import 'package:app_cuida_pet/app/core/logger/app_logger.dart';
 import 'package:app_cuida_pet/app/services/user/user_service.dart';
+
+import '../../../../core/exceptions/failure.dart';
 
 part 'login_controller.g.dart';
 
@@ -19,8 +23,21 @@ abstract class LoginControllerBase with Store {
         _userService = userService;
 
   Future<void> login(String login, String password) async {
-    Loader.show();
-    await Future.delayed(Duration(seconds: 2));
-    Loader.hide();
+    try {
+      Loader.show();
+      await _userService.login(login, password);
+
+      Loader.hide();
+    } on Failure catch (e, s) {
+      _log.error(e.message ?? '', e, s);
+
+      Loader.hide();
+      Messages.alert(e.message ?? 'Erro ao realizar login');
+    } on UserNotExistsException catch (e, s) {
+      _log.error('Usuario nao encontrado', e, s);
+
+      Loader.hide();
+      Messages.alert('Usuario nao cadastrado');
+    }
   }
 }
