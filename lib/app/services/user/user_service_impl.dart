@@ -67,6 +67,7 @@ class UserServiceImpl implements UserService {
         final accessToken = await _repository.login(email, password);
         await _saveAccessToken(accessToken);
         await _confirmLogin();
+        await _getUserData();
       } else {
         throw Failure(message: 'Login nao pode ser feito por e-mail e senha');
       }
@@ -86,6 +87,11 @@ class UserServiceImpl implements UserService {
     await _saveAccessToken(confirmLoginModel.accessToken);
     await _localSecureStore.write(Constantes.LOCAL_STORAGE_REFRESH_TOKEN_KEY,
         confirmLoginModel.refreshToken);
+  }
+
+  Future<void> _getUserData() async {
+    final userModel = await _repository.getUserLogged();
+    await _localStorage.write(Constantes.LOCAL_STORAGE_USER_LOGGED_DATA_KEY, userModel.toJson());
 
   }
 }

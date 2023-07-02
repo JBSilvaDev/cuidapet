@@ -23,8 +23,8 @@ class UserModel {
   factory UserModel.fromMap(Map<String, dynamic> map) {
     return UserModel(
       email: map['email'] as String,
-      registerType: map['registerType'] as String,
-      imgAvatar: map['imgAvatar'] as String,
+      registerType: map['register_type'] as String,
+      imgAvatar: map['image_avatar'] ?? '',
     );
   }
 
