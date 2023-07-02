@@ -27,6 +27,7 @@ dependencies:
   shared_preferences: ^2.1.2
   firebase_auth: ^4.6.3
   validatorless: ^1.2.3
+  firebase_messaging: ^14.6.4
 
 
 dev_dependencies:

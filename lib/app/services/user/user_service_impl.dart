@@ -14,11 +14,14 @@ class UserServiceImpl implements UserService {
   final AppLogger _log;
   final UserRepository _repository;
   final LocalStorage _localStorage;
+  final LocalSecureStorage _localSecureStore;
   UserServiceImpl({
     required AppLogger log,
     required UserRepository repository,
+    required LocalSecureStorage localSecureStore,
     required LocalStorage localStorage,
   })  : _log = log,
+        _localSecureStore = localSecureStore,
         _localStorage = localStorage,
         _repository = repository;
 
@@ -63,9 +66,7 @@ class UserServiceImpl implements UserService {
         }
         final accessToken = await _repository.login(email, password);
         await _saveAccessToken(accessToken);
-        final xx = await _localStorage.read<String>(Constantes.LOCAL_STORAGE_ACCESS_TOKEN_KEY);
-          print(xx);
-
+        await _confirmLogin();
       } else {
         throw Failure(message: 'Login nao pode ser feito por e-mail e senha');
       }
@@ -77,6 +78,14 @@ class UserServiceImpl implements UserService {
     }
   }
 
-  Future<void> _saveAccessToken(String accessToken) =>
-      _localStorage.write(Constantes.LOCAL_STORAGE_ACCESS_TOKEN_KEY, accessToken);
+  Future<void> _saveAccessToken(String accessToken) => _localStorage.write(
+      Constantes.LOCAL_STORAGE_ACCESS_TOKEN_KEY, accessToken);
+
+  Future<void> _confirmLogin() async {
+    final confirmLoginModel = await _repository.confirmLogin();
+    await _saveAccessToken(confirmLoginModel.accessToken);
+    await _localSecureStore.write(Constantes.LOCAL_STORAGE_REFRESH_TOKEN_KEY,
+        confirmLoginModel.refreshToken);
+
+  }
 }

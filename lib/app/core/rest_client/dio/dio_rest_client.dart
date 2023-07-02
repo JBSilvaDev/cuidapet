@@ -1,10 +1,13 @@
 import 'package:app_cuida_pet/app/core/helpers/enviroments.dart';
+import 'package:app_cuida_pet/app/core/local_storage/local_storage.dart';
+import 'package:app_cuida_pet/app/core/logger/app_logger.dart';
+import 'package:app_cuida_pet/app/core/rest_client/dio/interceptors/auth_interceptor.dart';
 import 'package:app_cuida_pet/app/core/rest_client/rest_client.dart';
 import 'package:app_cuida_pet/app/core/rest_client/rest_client_response.dart';
 import 'package:dio/dio.dart';
 
-import '../helpers/constantes.dart';
-import 'rest_client_exception.dart';
+import '../../helpers/constantes.dart';
+import '../rest_client_exception.dart';
 
 class DioRestClient implements RestClient {
   late final Dio _dio;
@@ -12,7 +15,6 @@ class DioRestClient implements RestClient {
   final _defaultOptions = BaseOptions(
       baseUrl: Enviroments.param(Constantes.ENV_BASE_URL_KEY) ?? '',
       connectTimeout: Duration(
-        
           milliseconds: int.parse(
               Enviroments.param(Constantes.ENV_REST_CLIENT_CONNECT_TIMEOUT) ??
                   '0')),
@@ -22,21 +24,26 @@ class DioRestClient implements RestClient {
                   '0')));
 
   DioRestClient({
+    required LocalStorage localStorage,
+    required AppLogger log,
     BaseOptions? baseOptions,
   }) {
     _dio = Dio(baseOptions ?? _defaultOptions);
-    _dio.interceptors.add(LogInterceptor(requestBody: true, responseBody: true));
+    _dio.interceptors.addAll([
+      AuthInterceptor(localStorage: localStorage, log: log),
+      LogInterceptor(requestBody: true, responseBody: true),
+    ]);
   }
 
   @override
   RestClient auth() {
-    _defaultOptions.extra['auth_required'] = true;
+    _defaultOptions.extra[Constantes.REST_CLIENT_AUTH_REQUIRED_KEY] = true;
     return this;
   }
 
   @override
   RestClient unanth() {
-    _defaultOptions.extra['auth_required'] = false;
+    _defaultOptions.extra[Constantes.REST_CLIENT_AUTH_REQUIRED_KEY] = false;
     return this;
   }
 
