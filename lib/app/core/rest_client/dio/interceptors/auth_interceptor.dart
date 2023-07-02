@@ -1,17 +1,22 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:app_cuida_pet/app/core/helpers/constantes.dart';
+import 'package:app_cuida_pet/app/modules/core/auth/auth_store.dart';
 import 'package:dio/dio.dart';
 
 import 'package:app_cuida_pet/app/core/local_storage/local_storage.dart';
 import 'package:app_cuida_pet/app/core/logger/app_logger.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class AuthInterceptor extends Interceptor {
   final LocalStorage _localStorage;
   final AppLogger _log;
+  final AuthStore _authStore;
   AuthInterceptor({
     required LocalStorage localStorage,
+    required AuthStore authStore,
     required AppLogger log,
   })  : _localStorage = localStorage,
+        _authStore = authStore,
         _log = log;
 
   @override
@@ -24,6 +29,8 @@ class AuthInterceptor extends Interceptor {
       final accessToken = await _localStorage
           .read<String>(Constantes.LOCAL_STORAGE_ACCESS_TOKEN_KEY);
       if (accessToken == null) {
+        _authStore.logout();
+        
         return handler.reject(
           DioException(
             requestOptions: options,

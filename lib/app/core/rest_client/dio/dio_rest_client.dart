@@ -6,6 +6,7 @@ import 'package:app_cuida_pet/app/core/rest_client/rest_client.dart';
 import 'package:app_cuida_pet/app/core/rest_client/rest_client_response.dart';
 import 'package:dio/dio.dart';
 
+import '../../../modules/core/auth/auth_store.dart';
 import '../../helpers/constantes.dart';
 import '../rest_client_exception.dart';
 
@@ -26,11 +27,12 @@ class DioRestClient implements RestClient {
   DioRestClient({
     required LocalStorage localStorage,
     required AppLogger log,
+    required AuthStore authStore,
     BaseOptions? baseOptions,
   }) {
     _dio = Dio(baseOptions ?? _defaultOptions);
     _dio.interceptors.addAll([
-      AuthInterceptor(localStorage: localStorage, log: log),
+      AuthInterceptor(localStorage: localStorage, log: log, authStore: authStore),
       LogInterceptor(requestBody: true, responseBody: true),
     ]);
   }

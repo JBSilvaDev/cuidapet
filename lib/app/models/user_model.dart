@@ -15,15 +15,15 @@ class UserModel {
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'email': email,
-      'registerType': registerType,
-      'imgAvatar': imgAvatar,
+      'register_type': registerType,
+      'image_avatar': imgAvatar,
     };
   }
 
   factory UserModel.fromMap(Map<String, dynamic> map) {
     return UserModel(
-      email: map['email'] as String,
-      registerType: map['register_type'] as String,
+      email: map['email'] ?? '',
+      registerType: map['register_type'] ?? '',
       imgAvatar: map['image_avatar'] ?? '',
     );
   }
