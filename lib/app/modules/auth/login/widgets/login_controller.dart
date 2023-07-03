@@ -50,6 +50,8 @@ abstract class LoginControllerBase with Store {
       await _userService.socialLogin(socialType);
 
       Loader.hide();
+      Modular.to.navigate('/auth/');
+      
     } on Failure catch (e, s) {
       Loader.hide();
 
