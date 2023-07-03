@@ -5,6 +5,9 @@ import 'package:app_cuida_pet/app/core/exceptions/user_not_exists_exception.dart
 import 'package:app_cuida_pet/app/core/helpers/constantes.dart';
 import 'package:app_cuida_pet/app/core/local_storage/local_storage.dart';
 import 'package:app_cuida_pet/app/core/logger/app_logger.dart';
+import 'package:app_cuida_pet/app/models/social_login_type.dart';
+import 'package:app_cuida_pet/app/models/social_network_model.dart';
+import 'package:app_cuida_pet/app/repositories/social/social_repository.dart';
 import 'package:app_cuida_pet/app/repositories/user_repository.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -15,14 +18,17 @@ class UserServiceImpl implements UserService {
   final UserRepository _repository;
   final LocalStorage _localStorage;
   final LocalSecureStorage _localSecureStore;
-  UserServiceImpl({
-    required AppLogger log,
-    required UserRepository repository,
-    required LocalSecureStorage localSecureStore,
-    required LocalStorage localStorage,
-  })  : _log = log,
+  final SocialRepository _socialRepository;
+  UserServiceImpl(
+      {required AppLogger log,
+      required UserRepository repository,
+      required LocalSecureStorage localSecureStore,
+      required LocalStorage localStorage,
+      required SocialRepository socialRepository})
+      : _log = log,
         _localSecureStore = localSecureStore,
         _localStorage = localStorage,
+        _socialRepository = socialRepository,
         _repository = repository;
 
   @override
@@ -91,7 +97,43 @@ class UserServiceImpl implements UserService {
 
   Future<void> _getUserData() async {
     final userModel = await _repository.getUserLogged();
-    await _localStorage.write(Constantes.LOCAL_STORAGE_USER_LOGGED_DATA_KEY, userModel.toJson());
+    await _localStorage.write(
+        Constantes.LOCAL_STORAGE_USER_LOGGED_DATA_KEY, userModel.toJson());
+  }
 
+  @override
+  Future<void> socialLogin(SocialLoginType socialLoginType) async {
+    final SocialNetworkModel socialModel;
+    final AuthCredential authCredential;
+    final firebaseAuth = FirebaseAuth.instance;
+    switch (socialLoginType) {
+      case SocialLoginType.facebook:
+        throw Exception();
+
+      case SocialLoginType.google:
+        socialModel = await _socialRepository.googleLogin();
+        authCredential = GoogleAuthProvider.credential(
+          accessToken: socialModel.accessToken,
+          idToken: socialModel.id,
+        );
+
+        break;
+    }
+    final loginMethods =
+        await firebaseAuth.fetchSignInMethodsForEmail(socialModel.email);
+    final methodCheck = _getMethodToSocialLoginType(socialLoginType);
+    if (loginMethods.isNotEmpty && !loginMethods.contains(methodCheck)) {
+      throw Failure(message: 'Login nao pode ser feito por conta tipo $methodCheck');
+    }
+    await firebaseAuth.signInWithCredential(authCredential);
+  }
+
+  String _getMethodToSocialLoginType(SocialLoginType socialLoginType) {
+    switch (socialLoginType) {
+      case SocialLoginType.facebook:
+        return 'facebook.com';
+      case SocialLoginType.google:
+        return 'google.com';
+    }
   }
 }

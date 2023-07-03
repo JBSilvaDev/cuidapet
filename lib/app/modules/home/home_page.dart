@@ -15,7 +15,8 @@ class HomePage extends StatelessWidget {
               FirebaseAuth.instance.signOut();
               
             },
-          )
+          ),
+      
         ],
         title: const Text('Home Page'),
       ),

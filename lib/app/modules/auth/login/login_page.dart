@@ -10,6 +10,7 @@ import '../../../core/ui/rounded_buttom_icon.dart';
 import '../../../core/ui/widgets/cuidapet_txtform.dart';
 import '../../../core/ui/widgets/loader.dart';
 import '../../../core/ui/widgets/messages.dart';
+import '../../../models/social_login_type.dart';
 import '../register/register_controller.dart';
 
 part './widgets/login_form.dart';
@@ -47,7 +48,7 @@ class LoginPage extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
-            const _LoginRegisterButtoms()
+             _LoginRegisterButtoms()
           ],
         ),
       ),

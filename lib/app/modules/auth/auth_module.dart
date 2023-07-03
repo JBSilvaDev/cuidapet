@@ -7,14 +7,19 @@ import 'package:app_cuida_pet/app/services/user/user_service.dart';
 import 'package:app_cuida_pet/app/services/user/user_service_impl.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
+import '../../repositories/social/social_repository.dart';
+import '../../repositories/social/social_repository_impl.dart';
+
 class AuthModule extends Module {
   @override
   List<Bind> get binds => [
+    Bind.lazySingleton<SocialRepository>((i) => SocialRepositoryImpl(log: i())),
     Bind.lazySingleton<UserRepository>((i) => UserRepositoryImpl(
       log: i(),
       restClient: i()
     )),
     Bind.lazySingleton<UserService>((i) => UserServiceImpl(
+      socialRepository: i(),
       log: i(),
       repository: i(),
       localStorage: i(),

@@ -4,8 +4,11 @@ import 'package:flutter_modular/flutter_modular.dart';
 
 class LoginModule extends Module {
   @override
-  List<Bind> get binds =>
-      [Bind.lazySingleton((i) => LoginController(userService: i(), log: i()))];
+  List<Bind> get binds => [
+        Bind.lazySingleton((i) => LoginController(userService: i(), log: i())),
+        
+
+      ];
 
   @override
   List<ModularRoute> get routes =>

@@ -28,6 +28,7 @@ dependencies:
   firebase_auth: ^4.6.3
   validatorless: ^1.2.3
   firebase_messaging: ^14.6.4
+  google_sign_in: ^6.1.4
 
 
 dev_dependencies:
