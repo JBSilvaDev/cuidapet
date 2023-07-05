@@ -5,7 +5,6 @@ import 'package:dio/dio.dart';
 
 import 'package:app_cuida_pet/app/core/local_storage/local_storage.dart';
 import 'package:app_cuida_pet/app/core/logger/app_logger.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 class AuthInterceptor extends Interceptor {
   final LocalStorage _localStorage;

@@ -15,7 +15,8 @@ class _LoginRegisterButtoms extends StatelessWidget {
       children: [
         RoundedButtomIcon(
             onPressed: () {
-              Messages.info('info');
+              Messages.info('DESABILITADO');
+              //controller.socialLogin(SocialLoginType.facebook);
             },
             width: .42.sw,
             color: Colors.blue,

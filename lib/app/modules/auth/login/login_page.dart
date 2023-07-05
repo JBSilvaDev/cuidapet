@@ -11,7 +11,6 @@ import '../../../core/ui/widgets/cuidapet_txtform.dart';
 import '../../../core/ui/widgets/loader.dart';
 import '../../../core/ui/widgets/messages.dart';
 import '../../../models/social_login_type.dart';
-import '../register/register_controller.dart';
 
 part './widgets/login_form.dart';
 part './widgets/login_register_buttoms.dart';

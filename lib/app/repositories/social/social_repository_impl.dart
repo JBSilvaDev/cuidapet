@@ -11,12 +11,31 @@ class SocialRepositoryImpl implements SocialRepository {
   final AppLogger _log;
   SocialRepositoryImpl({
     required AppLogger log,
-  }):_log=log;
-  @override
-  Future<SocialNetworkModel> facebookLogin() {
-    // TODO: implement facebookLogin
-    throw UnimplementedError();
-  }
+  }) : _log = log;
+  // @override
+  // Future<SocialNetworkModel> facebookLogin() async {
+  //   final facebookAuth = FacebookAuth.instance;
+  //   final result = await facebookAuth.login();
+  //   switch (result.status) {
+  //     case LoginStatus.success:
+  //       final userData = await facebookAuth.getUserData();
+  //       return SocialNetworkModel(
+  //         id: userData['id'],
+  //         name: userData['name'],
+  //         email: userData['email'],
+  //         type: 'Facebook',
+  //         avatar: userData['picture']['data']['url'],
+  //         accessToken: result.accessToken?.token ?? ''
+  //       );
+
+  //     case LoginStatus.cancelled:
+  //       throw Failure(message: 'Login cancelado');
+
+  //     case LoginStatus.failed:
+  //     case LoginStatus.operationInProgress:
+  //       throw Failure(message: 'Falha ao realizar login');
+  //   }
+  // }
 
   @override
   Future<SocialNetworkModel> googleLogin() async {
@@ -38,7 +57,7 @@ class SocialRepositoryImpl implements SocialRepository {
       );
     } else {
       _log.error('Erro ao realizar login com google');
-      
+
       throw Failure(message: 'Erro ao realizar login com google');
     }
   }
