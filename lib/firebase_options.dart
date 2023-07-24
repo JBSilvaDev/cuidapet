@@ -26,10 +26,7 @@ class DefaultFirebaseOptions {
       case TargetPlatform.android:
         return android;
       case TargetPlatform.iOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for ios - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return ios;
       case TargetPlatform.macOS:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for macos - '
@@ -58,5 +55,16 @@ class DefaultFirebaseOptions {
     messagingSenderId: '483132674321',
     projectId: 'cuidapet-front',
     storageBucket: 'cuidapet-front.appspot.com',
+  );
+
+  static const FirebaseOptions ios = FirebaseOptions(
+    apiKey: 'AIzaSyA0rDC9mT444oljH9FUouVtXgzcexEtFDk',
+    appId: '1:483132674321:ios:a85e70124c074d9b91bcb0',
+    messagingSenderId: '483132674321',
+    projectId: 'cuidapet-front',
+    storageBucket: 'cuidapet-front.appspot.com',
+    androidClientId: '483132674321-e8e08djja7mobo2vmoc26boiqbl0odtf.apps.googleusercontent.com',
+    iosClientId: '483132674321-qc7dvg15gb22oicqis6fsb1culvo55i6.apps.googleusercontent.com',
+    iosBundleId: 'com.jbsilva.dev.cuidapet',
   );
 }

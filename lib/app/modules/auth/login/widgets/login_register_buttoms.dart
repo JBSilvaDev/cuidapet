@@ -10,18 +10,18 @@ class _LoginRegisterButtoms extends StatelessWidget {
     return Wrap(
       direction: Axis.horizontal,
       alignment: WrapAlignment.center,
-      spacing: 10,
-      runSpacing: 10,
+      spacing: 10.w,
+      runSpacing: 10.w,
       children: [
-        RoundedButtomIcon(
-            onPressed: () {
-              Messages.info('DESABILITADO');
-              //controller.socialLogin(SocialLoginType.facebook);
-            },
-            width: .42.sw,
-            color: Colors.blue,
-            icon: CuidapetIcons.facebook,
-            label: 'Facebook'),
+        // RoundedButtomIcon(
+        //     onPressed: () {
+        //       Messages.info('DESABILITADO');
+        //       //controller.socialLogin(SocialLoginType.facebook);
+        //     },
+        //     width: .42.sw,
+        //     color: Colors.blue,
+        //     icon: CuidapetIcons.facebook,
+        //     label: 'Facebook'),
         RoundedButtomIcon(
             onPressed: () {
               controller.socialLogin(SocialLoginType.google);
@@ -32,6 +32,7 @@ class _LoginRegisterButtoms extends StatelessWidget {
             icon: CuidapetIcons.google,
             label: 'Google'),
         RoundedButtomIcon(
+          
             onPressed: () {
               Navigator.pushNamed(context, '/auth/register');
             },
