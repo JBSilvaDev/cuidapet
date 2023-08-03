@@ -40,9 +40,10 @@ class AuthRefreshTokenInterceptor extends Interceptor {
                   .extra[Constantes.REST_CLIENT_AUTH_REQUIRED_KEY] ??
               false;
           if (authRequired) {
-            _log.append('###### Refresh token ######');
+            _log.info('###### Refresh token ######');
             await _refreshToken(err);
             await _retryRequest(err, handler);
+            _log.info('###### Refresh token Success ######');
           } else {
             throw err;
           }
@@ -60,7 +61,7 @@ class AuthRefreshTokenInterceptor extends Interceptor {
       log('Erro no refresh token', stackTrace: s);
     } catch (e, s) {
       handler.next(err);
-      log('Erro no rest client', error:e, stackTrace:s);
+      log('Erro no rest client', error: e, stackTrace: s);
     } finally {
       _log.closeAppend();
     }
@@ -88,7 +89,7 @@ class AuthRefreshTokenInterceptor extends Interceptor {
 
   Future<void> _retryRequest(
       DioException err, ErrorInterceptorHandler handler) async {
-    _log.append('##### Retry request #####');
+    _log.info('##### Retry request (${err.requestOptions.path}) #####');
     final requestOptions = err.requestOptions;
     final result = await _restClient.request(
       requestOptions.path,

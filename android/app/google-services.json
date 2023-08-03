@@ -37,6 +37,14 @@
             {
               "client_id": "483132674321-964o1169f6tru12iosm1cihq3ir6vdpc.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "483132674321-dcnoitimeh07g14317u0jv1ma8m9nmjt.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.jbsilva.dev.cuidapet",
+                "app_store_id": "483132674321"
+              }
             }
           ]
         }

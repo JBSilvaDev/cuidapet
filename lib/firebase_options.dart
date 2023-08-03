@@ -59,12 +59,12 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyA0rDC9mT444oljH9FUouVtXgzcexEtFDk',
-    appId: '1:483132674321:ios:a85e70124c074d9b91bcb0',
+    appId: '1:483132674321:ios:77bd42fadf1120d591bcb0',
     messagingSenderId: '483132674321',
     projectId: 'cuidapet-front',
     storageBucket: 'cuidapet-front.appspot.com',
     androidClientId: '483132674321-e8e08djja7mobo2vmoc26boiqbl0odtf.apps.googleusercontent.com',
-    iosClientId: '483132674321-qc7dvg15gb22oicqis6fsb1culvo55i6.apps.googleusercontent.com',
+    iosClientId: '483132674321-dcnoitimeh07g14317u0jv1ma8m9nmjt.apps.googleusercontent.com',
     iosBundleId: 'com.jbsilva.dev.cuidapet',
   );
 }
